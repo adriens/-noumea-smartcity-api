@@ -5,9 +5,11 @@
  */
 package com.github.adriens.noumeasmartcityapi.service;
 
+import com.github.adriens.scalair4j.IGA;
 import com.github.adriens.scalair4j.Station;
 import com.github.adriens.scalair4j.StationCrawler;
 import java.util.HashMap;
+import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -48,6 +50,11 @@ public class ScalairService {
     public Station getGeneralLiveStatus() throws Exception{
         StationCrawler crawler = new StationCrawler();
         return crawler.getStationsStatuses().get(Station.NOM_STATION_GENERAL);
+    }
+    
+    // IGAs
+    public HashMap<Integer,IGA> getIGAs() throws Exception {
+        return IGA.getIGAs();
     }
     
 }

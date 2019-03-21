@@ -6,10 +6,15 @@
 package com.github.adriens.noumeasmartcityapi.controller;
 
 import com.github.adriens.noumeasmartcityapi.service.ScalairService;
+import com.github.adriens.scalair4j.IGA;
+import com.github.adriens.scalair4j.ShieldMessage;
 import com.github.adriens.scalair4j.Station;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -38,6 +43,14 @@ public class ScalairController {
             throw e;
         }
     }
+    @GetMapping(value={"/scalair/logicoop/message"})
+    public ShieldMessage getStationLogicoopShieldMessage() throws Exception {
+        try {
+            return scalairService.getLogicoopLiveStatus().getShieldMessage();
+        } catch (Exception e) {
+            throw e;
+        }
+    }
     
     @GetMapping(value={"/scalair/montravel"})
     public Station getStationMontravel() throws Exception {
@@ -47,11 +60,27 @@ public class ScalairController {
             throw e;
         }
     }
+    @GetMapping(value={"/scalair/montravel/message"})
+    public ShieldMessage getStationMontravelShieldMessage() throws Exception {
+        try {
+            return scalairService.getMontravelLiveStatus().getShieldMessage();
+        } catch (Exception e) {
+            throw e;
+        }
+    }
     
     @GetMapping(value={"/scalair/faubourg", "/scalair/faubourgblanchot"})
     public Station getStationFaubourg() throws Exception {
         try {
             return scalairService.getFaubourgLiveStatus();
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+    @GetMapping(value={"/scalair/faubourg/message"})
+    public ShieldMessage getStationFaubourgShieldMessage() throws Exception {
+        try {
+            return scalairService.getFaubourgLiveStatus().getShieldMessage();
         } catch (Exception e) {
             throw e;
         }
@@ -66,6 +95,16 @@ public class ScalairController {
         }
     }
     
+    @GetMapping(value={"/scalair/vata/message"})
+    public ShieldMessage getStationVataShieldMessage() throws Exception {
+        try {
+            return scalairService.getAnseVataLiveStatus().getShieldMessage();
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+    
+    
     @GetMapping(value={"/scalair/general"})
     public Station getStationGeneral() throws Exception {
         try {
@@ -75,7 +114,27 @@ public class ScalairController {
         }
     }
     
+    @GetMapping(value={"/scalair/general/message", "/scalair/message"})
+    public ShieldMessage getStationGeneralShieldMessage() throws Exception {
+        try {
+            return scalairService.getGeneralLiveStatus().getShieldMessage();
+        } catch (Exception e) {
+            throw e;
+        }
+    }
     
-    
+    // IGAs
+    @GetMapping(value={"/scalair/iga", "/scalair/igas"})
+    public HashMap<Integer,IGA> getIGAs() throws Exception {
+        try {
+            return scalairService.getIGAs();
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+    @GetMapping("/scalair/iga/{indice}")
+    public IGA getIGA(@PathVariable Integer indice) throws Exception {
+        return scalairService.getIGAs().get(indice-1);
+    }
     
 }
