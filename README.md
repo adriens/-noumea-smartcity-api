@@ -21,6 +21,6 @@ que présenté sur [la carte de leur site](http://www.scalair.nc/)
 - `/scalair/vata/message`
 - `/scalair/general` : IQA général pour Nouméa entier
 - `/scalair/general/message` ou `/scalair/message`
-- `/scalair/iga` : liste des IGA
-- `/scalair/iga/{indice}` : détail
+- `/scalair/iqa` : liste des IQAs
+- `/scalair/iqa/{indice}` : détail de la défintion d'un IQA
 

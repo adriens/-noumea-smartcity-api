@@ -6,7 +6,7 @@
 package com.github.adriens.noumeasmartcityapi.controller;
 
 import com.github.adriens.noumeasmartcityapi.service.ScalairService;
-import com.github.adriens.scalair4j.IGA;
+import com.github.adriens.scalair4j.IQA;
 import com.github.adriens.scalair4j.ShieldMessage;
 import com.github.adriens.scalair4j.Station;
 import java.util.HashMap;
@@ -122,17 +122,17 @@ public class ScalairController {
     }
     
     // IGAs
-    @GetMapping(value={"/scalair/iga", "/scalair/igas"})
-    public HashMap<Integer,IGA> getIGAs() throws Exception {
+    @GetMapping(value={"/scalair/iqa", "/scalair/igas"})
+    public HashMap<Integer,IQA> getIQAs() throws Exception {
         try {
-            return scalairService.getIGAs();
+            return scalairService.getIQAs();
         } catch (Exception e) {
             throw e;
         }
     }
-    @GetMapping("/scalair/iga/{indice}")
-    public IGA getIGA(@PathVariable Integer indice) throws Exception {
-        return scalairService.getIGAs().get(indice-1);
+    @GetMapping("/scalair/iqa/{indice}")
+    public IQA getIQA(@PathVariable Integer indice) throws Exception {
+        return scalairService.getIQAs().get(indice-1);
     }
     
 }
