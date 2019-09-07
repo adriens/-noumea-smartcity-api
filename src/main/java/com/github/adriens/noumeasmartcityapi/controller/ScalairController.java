@@ -9,7 +9,9 @@ import com.github.adriens.noumeasmartcityapi.service.ScalairService;
 import com.github.adriens.scalair4j.IQA;
 import com.github.adriens.scalair4j.ShieldMessage;
 import com.github.adriens.scalair4j.Station;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,9 +27,9 @@ public class ScalairController {
     private ScalairService scalairService;
     
     @GetMapping(value={"/scalair/live", "/scalair/"})
-    public HashMap<String, Station> getAllStations() throws Exception {
+    public List<Station> getAllStations() throws Exception {
         try {
-            return scalairService.getAllLiveStationsStatuses();
+            return new ArrayList<Station>(scalairService.getAllLiveStationsStatuses().values());//scalairService.getAllLiveStationsStatuses();
         } catch (Exception e) {
             throw e;
         }
